@@ -40,6 +40,7 @@ def print_row(label, v, end):
 def sperm_man_sort(arr_in):
     arr = np.array(arr_in, float)
     arr_sort = np.sort(arr)
+    ranks = np.copy(arr)
     i = 0
     while i < len(arr_sort):
         indices = np.where(arr == arr_sort[i])[0]
@@ -47,8 +48,10 @@ def sperm_man_sort(arr_in):
         rank = ((i + 1) + (i + n_el)) / 2
         for index in indices:
             arr[index] = rank
+            ranks[index] = rank
         i += n_el
     return arr
+    return ranks
 
 
 print("Pearson")
