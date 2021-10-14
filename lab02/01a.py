@@ -47,23 +47,33 @@ def sperm_man_sort(arr_in):
         n_el = len(indices)
         rank = ((i + 1) + (i + n_el)) / 2
         for index in indices:
-            arr[index] = rank
             ranks[index] = rank
         i += n_el
-    return arr
     return ranks
 
+xy_input = [[8,7],[4,0],[2,-6],[1,4],[10,0],[-3,1],[-10,-3],[-4,5],[1,1],[-5,-3],[2,-2],[4,4],[-1,1],[6,-6]]
+xy_values = np.array(xy_input)
 
-print("Pearson")
-pearson = bravais_perason(
-     [5, 10, 20, 8, 4, 6, 12, 15],
-     [27, 46, 73, 40, 30, 28, 47, 59]
-)
+x_values = xy_values[:, 0]
+x_sorted = np.sort(x_values)
+x_ranked = sperm_man_sort(x_values)
+print(f"x-values: {list(x_values)}")
+print(f"x-sorted: {list(x_sorted)}")
+print(f"x-ranked: {list(x_ranked)}")
+print("--------------------------------------------\n")
+
+y_values = xy_values[:, 1]
+y_sorted = np.sort(y_values)
+y_ranked = sperm_man_sort(y_values)
+print(f"y-values: {list(y_values)}")
+print(f"y-sorted: {list(y_sorted)}")
+print(f"y-ranked: {list(y_ranked)}")
+print("--------------------------------------------\n")
+
+print("Bravais Pearson")
+bravais_perason(x_values, y_values)
+print("--------------------------------------------\n")
 
 print("Spearman")
-spearman = bravais_perason(
-     sperm_man_sort([5, 10, 20, 8, 4, 6, 12, 15]),
-     sperm_man_sort([27, 46, 73, 40, 30, 28, 47, 59])
-)
-
-
+bravais_perason(x_ranked, y_ranked)
+print("--------------------------------------------\n")
